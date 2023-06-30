@@ -13,6 +13,9 @@
         android:theme="@style/Theme.GamerRule"
         tools:targetApi="31">
         <activity
+            android:name=".ui.admin.AddNewGameActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.AdminActivity"
             android:exported="false" />
         <activity
