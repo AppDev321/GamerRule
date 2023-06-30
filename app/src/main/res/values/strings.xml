@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">GamerRule</string>
+
+    <string name="login_title">Hello Again!</string>
+    <string name="login_subtitle">Welcome back you have been missed!</string>
+    <string name="login_resend_otp">Resend OTP?</string>
+    <string name="login_send_otp">Verify OTP</string>
+    <string name="login_button">Login</string>
+
+    <string name="register_title">Hello Gamer!</string>
+    <string name="register_subtitle">We have been waiting for you!</string>
+    <string name="register_button">Register</string>
+</resources>

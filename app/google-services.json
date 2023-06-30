@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "897172179606",
+    "project_id": "gamerrule",
+    "storage_bucket": "gamerrule.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:897172179606:android:393455f231daad82ef50b7",
+        "android_client_info": {
+          "package_name": "com.gamerrule.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "897172179606-40vvt85qg7tj6ddpd5h69hkr0h38kptj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gamerrule.android",
+            "certificate_hash": "2eeca955292d8a8b5c411fd31195c68c2d385525"
+          }
+        },
+        {
+          "client_id": "897172179606-8pa7ihsgq1suc9j4qnfibaiid7rhiol1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDf5ATwAkrI-EaYORk68jLfPWEH28qyHgg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "897172179606-8pa7ihsgq1suc9j4qnfibaiid7rhiol1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

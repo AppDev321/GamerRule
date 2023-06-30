@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_backgrond"
+    android:padding="@dimen/outer_padding"
+    tools:context=".ui.RegisterActivity">
+    <ImageView
+        android:id="@+id/iv_logo_redg"
+        android:layout_marginTop="60dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/register_title_tv"
+        style="@style/h1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/register_title"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_logo_redg" />
+
+    <TextView
+        android:id="@+id/textView_register_subtitle"
+        style="@style/h1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/register_subtitle"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/register_title_tv" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/outer_padding"
+        app:layout_constraintTop_toBottomOf="@id/textView_register_subtitle"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_name_input_register"
+            style="@style/editBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/outer_padding"
+            android:hint="Jon Deo"
+            android:inputType="text" />
+        <EditText
+            android:id="@+id/et_email_input_register"
+            style="@style/editBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/outer_padding"
+            android:hint="jondeo@example.com"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/et_phone_input_register"
+            style="@style/editBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/outer_padding"
+            android:hint="+91-7345734573"
+            android:inputType="phone" />
+        <EditText
+            android:visibility="invisible"
+            android:id="@+id/et_otp_input_register"
+            style="@style/editBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/outer_padding"
+            android:hint="Enter OTP"
+            android:inputType="numberSigned" />
+        <TextView
+            android:visibility="invisible"
+            android:id="@+id/tv_resend_otp_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="textEnd"
+            android:textColor="@color/purple"
+            android:text="@string/login_resend_otp"
+            android:layout_marginTop="@dimen/inner_padding" />
+
+        <Button
+            android:id="@+id/register_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/outer_padding"
+            style="@style/primaryButton"
+            android:text="@string/register_button" />
+
+        <TextView
+            android:id="@+id/tv_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Go to login Screen!"
+            android:layout_marginTop="@dimen/outer_padding"
+            android:textAlignment="center"
+            android:textColor="@color/purple" />
+
+    </LinearLayout>
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
