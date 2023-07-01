@@ -2,6 +2,7 @@ package com.gamerrule.android.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -9,6 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.gamerrule.android.R;
+import com.gamerrule.android.ui.admin.AddMatchActivity;
+import com.gamerrule.android.ui.admin.AddNewGameActivity;
 
 public class AdminActivity extends AppCompatActivity {
 
@@ -41,6 +44,7 @@ public class AdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Handle click event for Add Game option
+                startActivity(new Intent(AdminActivity.this, AddNewGameActivity.class));
             }
         });
 
@@ -48,6 +52,7 @@ public class AdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Handle click event for Add Match option
+                startActivity(new Intent(AdminActivity.this, AddMatchActivity.class));
             }
         });
 

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_backgrond"
+    tools:context=".ui.admin.AddMatchActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/outer_padding">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/etMatchImageURLAddMatch"
+                style="@style/editBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Match Image URL"
+                android:layout_marginVertical="@dimen/inner_padding" />
+
+            <Spinner
+                android:id="@+id/spinnerGameTypeAddMatch"
+                style="@style/editBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Game Type"
+                android:layout_marginVertical="@dimen/inner_padding" />
+
+            <TextView
+                android:id="@+id/btnDateTimePickerAddMatch"
+                style="@style/editBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Match Schedule"
+                android:layout_marginVertical="@dimen/inner_padding" />
+
+            <EditText
+                android:id="@+id/etMapAddMatch"
+                style="@style/editBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Map"
+                android:layout_marginVertical="@dimen/inner_padding" />
+
+            <EditText
+                android:id="@+id/etMatchTypeAddMatch"
+                style="@style/editBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Match Type eg. Solo, Duo"
+                android:layout_marginVertical="@dimen/inner_padding" />
+
+            <EditText
+                android:id="@+id/etPrizePoolAddMatch"
+                style="@style/editBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Prize Pool"
+                android:layout_marginVertical="@dimen/inner_padding" />
+
+            <EditText
+                android:id="@+id/etPerKillAddMatch"
+                style="@style/editBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Per Kill"
+                android:layout_marginVertical="@dimen/inner_padding" />
+
+            <EditText
+                android:id="@+id/etEntryFeesAddMatch"
+                style="@style/editBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Entry Fees"
+                android:layout_marginVertical="@dimen/outer_padding" />
+
+            <EditText
+                android:id="@+id/etMaxPlayersAddMatch"
+                style="@style/editBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Max Players"
+                android:layout_marginVertical="@dimen/inner_padding" />
+
+            <EditText
+                android:id="@+id/etDescriptionAddMatch"
+                style="@style/editBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Description"
+                android:lines="4"
+                android:layout_marginVertical="@dimen/inner_padding" />
+
+            <Spinner
+                android:id="@+id/spinnerMatchStatusAddMatch"
+                style="@style/editBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/inner_padding" />
+
+            <EditText
+                android:id="@+id/etRoomIdAddMatch"
+                style="@style/editBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Room Id"
+                android:layout_marginVertical="@dimen/inner_padding" />
+
+            <EditText
+                android:id="@+id/etRoomPasskeyAddMatch"
+                style="@style/editBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Room Passkey"
+                android:layout_marginVertical="@dimen/inner_padding" />
+
+            <Button
+                android:id="@+id/btnSubmitAddMatch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/primaryButton"
+                android:text="Submit"
+                android:layout_marginVertical="@dimen/inner_padding" />
+
+            <Button
+                android:id="@+id/btnResetAddMatch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Reset"
+                android:layout_marginVertical="@dimen/inner_padding" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,4 +10,9 @@
     <string name="register_title">Hello Gamer!</string>
     <string name="register_subtitle">We have been waiting for you!</string>
     <string name="register_button">Register</string>
+    <array name="match_status_options">
+        <item>Upcoming</item>
+        <item>Ongoing</item>
+        <item>Past</item>
+    </array>
 </resources>
