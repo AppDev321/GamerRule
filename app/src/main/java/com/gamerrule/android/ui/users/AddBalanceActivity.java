@@ -70,7 +70,7 @@ public class AddBalanceActivity extends AppCompatActivity {
                 // Check if the amount is valid
                 if (isValidAmount(amount)) {
                     transactionId = "T" + System.currentTimeMillis();
-                    makePayment(amount +".00","paytmqr1u7ajq6uv8@paytm","ROHIT RANJAN","gamerbold deposit", transactionId);
+                    makePayment(amount +".00","gamerbold@upi","GamerBold","gamerbold deposit", transactionId);
                 } else {
                     // Display an error message or perform appropriate action
                     Toast.makeText(AddBalanceActivity.this, "Invalid amount", Toast.LENGTH_SHORT).show();
@@ -133,7 +133,7 @@ public class AddBalanceActivity extends AppCompatActivity {
             EasyUpiPayment.Builder builder = new EasyUpiPayment.Builder(this)
                     .setPayeeVpa(upi)
                     .setPayeeName(name)
-                    .setPayeeMerchantCode("5999")
+                    .setPayeeMerchantCode("7994")
                     .setTransactionId(transactionId)
                     .setTransactionRefId(transactionId)
                     .setDescription(desc)
