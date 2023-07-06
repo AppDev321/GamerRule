@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/outer_padding"
+    android:background="@drawable/drawable_home"
+    tools:context=".ui.users.ViewMatchesActivity">
+
+    <TextView
+        android:id="@+id/game_title_match"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/arbutus"
+        android:text="Free Fire"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/h1_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/game_title_match"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/rounded_background_top_only"
+        android:elevation="2dp"
+        android:layout_marginTop="20dp"
+        android:padding="@dimen/outer_padding">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/recyclerViewMatches" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

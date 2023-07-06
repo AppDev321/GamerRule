@@ -22,7 +22,7 @@
                 style="@style/editBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Match Image URL"
+                android:hint="Match Title"
                 android:layout_marginVertical="@dimen/inner_padding" />
 
             <Spinner

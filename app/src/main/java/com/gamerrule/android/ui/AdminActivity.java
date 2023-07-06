@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.gamerrule.android.R;
 import com.gamerrule.android.ui.admin.AddMatchActivity;
 import com.gamerrule.android.ui.admin.AddNewGameActivity;
+import com.gamerrule.android.ui.users.HomeActivity;
 
 public class AdminActivity extends AppCompatActivity {
 
@@ -60,6 +61,7 @@ public class AdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Handle click event for View Games option
+                startActivity(new Intent(AdminActivity.this, HomeActivity.class));
             }
         });
 

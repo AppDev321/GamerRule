@@ -12,6 +12,11 @@
     <color name="grey">#F3F3F3</color>
     <color name="light_blue">#A0E4F1</color>
     <color name="light_purple">#7EA6F4</color>
-    <color name="purple">#4A4DE7</color>
+    <color name="purple">#8B52FE</color>
     <color name="orange">#FF5722</color>
+
+    <color name="primary_red">#F56062</color>
+    <color name="secondary_black">#242A38</color>
+    <color name="dark_grey">#4E596F</color>
+
 </resources>

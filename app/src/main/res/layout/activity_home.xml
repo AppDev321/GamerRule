@@ -1,40 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_backgrond"
+    android:background="@drawable/drawable_home"
     tools:context=".ui.users.HomeActivity">
 
     <LinearLayout
+        android:id="@+id/ll_home1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:padding="@dimen/outer_padding"
-        android:background="@drawable/half_circle_background"
         android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
             <ImageView
                 android:id="@+id/logo_home_screen"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_alignParentStart="true"
                 android:src="@mipmap/ic_launcher_round" />
+
             <TextView
+                style="@style/h1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/h2"
-                android:textColor="@color/white"
-                android:paddingStart="@dimen/outer_padding"
+                android:layout_marginLeft="4dp"
+                android:layout_toRightOf="@id/logo_home_screen"
+                android:paddingStart="@dimen/inner_padding"
                 android:text="@string/app_name"
-                android:layout_toRightOf="@id/logo_home_screen" />
+                android:textColor="@color/white" />
 
+            <TextView
+                android:id="@+id/wallet_balance_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="0.00"
+                android:textColor="@color/orange"
+                style="@style/editBox"
+                android:drawableStart="@drawable/ic_coin_16"
+                android:drawablePadding="@dimen/inner_padding"
+                android:padding="4dp" />
 
         </RelativeLayout>
 
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_marginTop="@dimen/outer_padding"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+        <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/dot3"
+            android:layout_marginTop="10dp"
+            app:dotsColor="@color/white"
+            app:selectedDotColor="@color/white"
+            app:dotsSize="15dp"
+            app:dotsSpacing="5dp"/>
     </LinearLayout>
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/outer_padding"
+        android:background="@drawable/rounded_background_top_only"
+        android:elevation="2dp"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/outer_padding"
+        android:paddingTop="@dimen/outer_padding"
+        android:paddingBottom="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_home1">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_game_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
