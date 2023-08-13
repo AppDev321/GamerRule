@@ -12,8 +12,8 @@ android {
         applicationId "com.gamerrule.android"
         minSdk 23
         targetSdk 33
-        versionCode 1
-        versionName "1.0"
+        versionCode 10
+        versionName "1.0.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -75,4 +75,5 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore")
     implementation 'com.tbuonomo:dotsindicator:4.3'
     implementation 'com.github.bumptech.glide:glide:4.15.1'
+    implementation 'com.google.android.play:integrity:1.1.0'
 }

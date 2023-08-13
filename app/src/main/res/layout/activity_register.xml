@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_backgrond"
+    android:background="@drawable/background_register"
     android:orientation="vertical"
     tools:context=".ui.RegisterActivity">
 
@@ -13,25 +13,20 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="@dimen/outer_padding"
-        android:background="@drawable/half_circle_background"
+        android:layout_marginBottom="30dp"
         android:gravity="center">
-        <ImageView
-            android:id="@+id/iv_logo_redg"
-            android:layout_marginTop="60dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher"/>
 
         <TextView
             android:id="@+id/register_title_tv"
             style="@style/h1"
+            android:visibility="invisible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/register_title"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="150dp" />
 
     </LinearLayout>
 
@@ -98,13 +93,13 @@
             android:text="@string/register_button" />
 
         <TextView
-            android:id="@+id/tv_login"
+            android:id="@+id/tv_login_from_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Go to login Screen!"
             android:layout_marginTop="@dimen/outer_padding"
             android:textAlignment="center"
-            android:textColor="@color/orange" />
+            android:textColor="@color/primary_red" />
 
     </LinearLayout>
 

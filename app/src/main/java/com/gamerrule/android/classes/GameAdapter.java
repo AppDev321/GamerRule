@@ -4,7 +4,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,8 +23,14 @@ import java.util.List;
 public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder> {
     private List<Game> games = new ArrayList<>();
 
+    private OnEditClickListener onEditClickListener;
+    private OnDeleteClickListener onDeleteClickListener;
+    private OnItemClickListener onItemClickListener;
+    private boolean isAdmin ;
+
     public void setGames(List<Game> games) {
         this.games = games;
+        isAdmin = new Constants().isUserAdmin();
         notifyDataSetChanged();
     }
 
@@ -40,8 +48,8 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
         holder.gameNameTextView.setText(game.getGameName());
 
         String imageUrl = game.getImageURL();
-//        Log.e("GameAdapter", "Image URL is null for game: " + game.getGameName());
-//        Log.e("GameAdapter", "Image URL is null for game: " + game.getImageURL());
+        // Log.e("GameAdapter", "Image URL is null for game: " + game.getGameName());
+
         if (imageUrl != null) {
             Glide.with(holder.itemView.getContext())
                     .load(imageUrl)
@@ -58,6 +66,23 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
                 onItemClickListener.onItemClick(game);
             }
         });
+
+        holder.editButton.setOnClickListener(view -> {
+            if (onEditClickListener != null) {
+                onEditClickListener.onEditClick(game);
+            }
+        });
+
+        holder.deleteButton.setOnClickListener(view -> {
+            if (onDeleteClickListener != null) {
+                onDeleteClickListener.onDeleteClick(game);
+            }
+        });
+
+        if(isAdmin){
+            holder.linearLayoutAdminOnly.setVisibility(View.VISIBLE);
+        }
+
     }
 
     @Override
@@ -69,18 +94,41 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
         ImageView gameImageView;
         TextView gameNameTextView;
 
+        ImageButton editButton, deleteButton;
+        LinearLayout linearLayoutAdminOnly;
+
         GameViewHolder(@NonNull View itemView) {
             super(itemView);
             gameImageView = itemView.findViewById(R.id.imageView_game_item);
             gameNameTextView = itemView.findViewById(R.id.textView_game_item);
+            editButton = itemView.findViewById(R.id.ib_edit_game_item);
+            deleteButton = itemView.findViewById(R.id.ib_delete_game_item);
+            linearLayoutAdminOnly = itemView.findViewById(R.id.linear_layout_admin_only_game_item);
         }
     }
 
     public interface OnItemClickListener {
         void onItemClick(Game game);
     }
-    private OnItemClickListener onItemClickListener;
+    public interface OnEditClickListener {
+        void onEditClick(Game game);
+    }
+
+    public interface OnDeleteClickListener {
+        void onDeleteClick(Game game);
+    }
+
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.onItemClickListener = listener;
     }
+
+
+    public void setOnEditClickListener(OnEditClickListener listener) {
+        this.onEditClickListener = listener;
+    }
+
+    public void setOnDeleteClickListener(OnDeleteClickListener listener) {
+        this.onDeleteClickListener = listener;
+    }
+
 }

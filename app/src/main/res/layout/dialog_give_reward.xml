@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/outer_padding">
+
+    <TextView
+        android:id="@+id/tv_game_userName_dialog_give_reward"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Give Reward"
+        android:textStyle="bold"
+        android:textColor="@color/primary_red"
+        android:layout_marginVertical="@dimen/inner_padding"
+        style="@style/h2"/>
+
+    <EditText
+        android:id="@+id/editTextKills_dialog_give_reward"
+        style="@style/editBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/inner_padding"
+        android:hint="Kills" />
+
+    <EditText
+        android:id="@+id/editTextRank_dialog_give_reward"
+        style="@style/editBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/inner_padding"
+        android:hint="Rank" />
+
+    <EditText
+        android:id="@+id/editTextWinningAmount_dialog_give_reward"
+        style="@style/editBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/inner_padding"
+        android:hint="Winning Amount" />
+
+</LinearLayout>

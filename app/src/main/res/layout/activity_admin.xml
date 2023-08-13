@@ -149,7 +149,7 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/inner_padding"
                     style="@style/small_text"
-                    android:text="Withdraw Requests" />
+                    android:text="Payment Requests" />
 
             </LinearLayout>
 
@@ -171,7 +171,6 @@
                     android:padding="@dimen/inner_padding"
                     style="@style/small_text"
                     android:text="Manage Users" />
-
             </LinearLayout>
 
         </TableRow>

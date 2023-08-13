@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -34,6 +35,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -48,6 +50,9 @@ public class AddMatchActivity extends AppCompatActivity {
     private EditText etRoomId;
     private EditText etRoomPasskey;
     private Spinner spinnerMatchStatus;
+    private ImageView ivBackButton;
+    private TextView tvTitlePage;
+    List<Game> gamesList;
 
 
     @Override
@@ -71,9 +76,14 @@ public class AddMatchActivity extends AppCompatActivity {
         etRoomId = findViewById(R.id.etRoomIdAddMatch);
         etRoomPasskey = findViewById(R.id.etRoomPasskeyAddMatch);
         spinnerMatchStatus = findViewById(R.id.spinnerMatchStatusAddMatch);
+        ivBackButton =  findViewById(R.id.iv_back_nav_add_math);
+        tvTitlePage =  findViewById(R.id.tv_title_add_match);
+
+        ivBackButton.setOnClickListener( v -> { onBackPressed();});
 
 
         // Set spinner data
+        gamesList = new ArrayList<>();
         initSpinner();
         // Set spinner options for Match Status
         ArrayAdapter<CharSequence> statusAdapter = ArrayAdapter.createFromResource(this, R.array.match_status_options, android.R.layout.simple_spinner_item);
@@ -88,13 +98,17 @@ public class AddMatchActivity extends AppCompatActivity {
             }
         });
 
+        if(getIntent().hasExtra("selectedMatch")){
+            initTextFields();
+        }
+
         // Set click listener for Submit button
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Get input values from EditText fields
                 String imageUrl = etMatchImageURL.getText().toString().trim();
-                String gameType = spinnerGameType.getSelectedItem().toString();
+                String gameType =  gamesList.get(spinnerGameType.getSelectedItemPosition()).getDocumentId();
                 String matchDateTime = btnDateTimePicker.getText().toString().trim();
                 String map = etMap.getText().toString().trim();
                 String matchType = etMatchType.getText().toString().trim();
@@ -123,10 +137,15 @@ public class AddMatchActivity extends AppCompatActivity {
                     return;
                 }
 
+
+
                 // Create a new Match object with the input values
                 Match match = new Match();
                 match.setImageUrl(imageUrl);
                 match.setGameType(gameType);
+                if(getIntent().hasExtra("selectedMatch")){
+                    match.setDocumentId(((Match)getIntent().getSerializableExtra("selectedMatch")).getDocumentId());
+                }
                 try {
                     match.setMatchSchedule(dateFormatter.parse(matchDateTime));
                 } catch (ParseException e) {
@@ -172,8 +191,10 @@ public class AddMatchActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     List<String> gameNames = new ArrayList<>();
+
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         Game game = document.toObject(Game.class);
+                        gamesList.add(game);
                         gameNames.add(game.getGameName());
                     }
                     ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(AddMatchActivity.this,
@@ -250,6 +271,7 @@ public class AddMatchActivity extends AppCompatActivity {
                         public void onSuccess(Void aVoid) {
                             // Match saved successfully
                             setLoadingState(false);
+                            resetForm();
                             Toast.makeText(AddMatchActivity.this, "Match updated successfully", Toast.LENGTH_SHORT).show();
                             finish(); // Finish the activity after saving
                         }
@@ -275,8 +297,9 @@ public class AddMatchActivity extends AppCompatActivity {
                         public void onSuccess(Void aVoid) {
                             // Match saved successfully
                             setLoadingState(false);
+                            resetForm();
                             Toast.makeText(AddMatchActivity.this, "Match added successfully", Toast.LENGTH_SHORT).show();
-
+                            finish();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -353,4 +376,61 @@ public class AddMatchActivity extends AppCompatActivity {
             btnSubmit.setText("Submit");
         }
     }
+
+    private void initTextFields() {
+        // Retrieve the selected match from the intent
+        Match selectedMatch = (Match)getIntent().getSerializableExtra("selectedMatch");
+
+        // Fill the text fields and spinners with the match data
+        if (selectedMatch != null) {
+            etMatchImageURL.setText(selectedMatch.getImageUrl());
+            // Set the selected game type in the spinner
+            selectGameType(selectedMatch.getGameType());
+            // Format the match schedule date and time and set it in the button
+            btnDateTimePicker.setText(formatDateTime(selectedMatch.getMatchSchedule()));
+            etMap.setText(selectedMatch.getMap());
+            etMatchType.setText(selectedMatch.getMatchType());
+            etPrizePool.setText(selectedMatch.getPrizePool());
+            etPerKill.setText(selectedMatch.getPerKill());
+            etEntryFees.setText(selectedMatch.getEntryFees());
+            etMaxPlayers.setText(String.valueOf(selectedMatch.getMaxPlayers()));
+            etDescription.setText(selectedMatch.getDescription());
+            etRoomId.setText(selectedMatch.getRoomId());
+            etRoomPasskey.setText(selectedMatch.getRoomPasskey());
+            // Set the selected match status in the spinner
+            selectMatchStatus(selectedMatch.getMatchStatus());
+            // Delay the selection of game type spinner until it has finished loading
+            spinnerGameType.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    selectGameType(selectedMatch.getGameType());
+                }
+            }, 500);
+        }
+    }
+
+    private void selectGameType(String gameTypeId) {
+        for (int i = 0; i < gamesList.size(); i++) {
+            Game game = gamesList.get(i);
+            if (game.getDocumentId().equals(gameTypeId)) {
+                spinnerGameType.setSelection(i);
+                break;
+            }
+        }
+    }
+
+    private void selectMatchStatus(String matchStatus) {
+        ArrayAdapter<CharSequence> statusAdapter = (ArrayAdapter<CharSequence>) spinnerMatchStatus.getAdapter();
+        int position = statusAdapter.getPosition(matchStatus);
+        spinnerMatchStatus.setSelection(position);
+    }
+
+    private String formatDateTime(Date dateTime) {
+        // Customize the date and time format according to your requirements
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault());
+        return dateFormatter.format(dateTime);
+    }
+
+
+
 }

@@ -3,316 +3,400 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/edit_text_background"
-    android:padding="@dimen/inner_padding"
+    android:layout_margin="@dimen/inner_padding"
+    android:elevation="2dp"
     android:orientation="vertical"
     android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:id="@+id/tv_title_match"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="#Match 1 | TDM  | Solo"
-            style="@style/h3"
-            android:textColor="@color/primary_red" />
-
-        <ImageButton
-            android:id="@+id/ibEditMatchButton"
-            android:visibility="gone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/baseline_edit_24" />
-    </LinearLayout>
-
-    <!-- Row 1 -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/inner_padding"
-        android:gravity="center_vertical">
-
-        <!-- Match Date -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <!-- Date Label -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Match Date"
-                style="@style/label_text" />
-
-            <!-- Date Value -->
-            <TextView
-                android:id="@+id/tvDateValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Date Value"
-                style="@style/data_match_text" />
-
-        </LinearLayout>
-
-        <!-- Vertical Line -->
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@android:color/darker_gray" />
-
-        <!-- Match Time -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <!-- Time Label -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Match Time"
-                style="@style/label_text" />
-
-            <!-- Time Value -->
-            <TextView
-                android:id="@+id/tvTimeValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Time Value"
-                style="@style/data_match_text" />
-
-        </LinearLayout>
-
-        <!-- Vertical Line -->
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@android:color/darker_gray" />
-
-        <!-- Map -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <!-- Map Label -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Map"
-                style="@style/label_text" />
-
-            <!-- Map Value -->
-            <TextView
-                android:id="@+id/tvMapValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Map Value"
-                style="@style/data_match_text" />
-
-        </LinearLayout>
-
-        <!-- Vertical Line -->
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@android:color/darker_gray" />
-
-        <!-- Match Type -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <!-- Match Type Label -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Match Type"
-                style="@style/label_text" />
-
-            <!-- Match Type Value -->
-            <TextView
-                android:id="@+id/tvMatchTypeValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Match Type Value"
-                style="@style/data_match_text" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <!-- Row 2 -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/inner_padding"
-        android:gravity="center_vertical">
-
-        <!-- Prize Pool -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <!-- Prize Pool Label -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Prize Pool"
-                style="@style/label_text" />
-
-            <!-- Prize Pool Value -->
-            <TextView
-                android:id="@+id/tvPrizePoolValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Prize Pool Value"
-                style="@style/data_match_text" />
-
-        </LinearLayout>
-
-        <!-- Vertical Line -->
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@android:color/darker_gray" />
-
-        <!-- Per Kill -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <!-- Per Kill Label -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Per Kill"
-                style="@style/label_text" />
-
-            <!-- Per Kill Value -->
-            <TextView
-                android:id="@+id/tvPerKillValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Per Kill Value"
-                style="@style/data_match_text" />
-
-        </LinearLayout>
-
-        <!-- Vertical Line -->
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@android:color/darker_gray" />
-
-        <!-- Entry Fees -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <!-- Entry Fees Label -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Entry Fees"
-                style="@style/label_text" />
-
-            <!-- Entry Fees Value -->
-            <TextView
-                android:id="@+id/tvEntryFeesValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Entry Fees Value"
-                style="@style/data_match_text" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <!-- Additional Row -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="@dimen/outer_padding"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
-
+        android:layout_height="match_parent"
+        android:padding="@dimen/outer_padding"
+        android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingEnd="@dimen/inner_padding"
-            android:layout_weight="0.3">
-            <!-- Progress Bar -->
-            <com.google.android.material.progressindicator.LinearProgressIndicator
-                android:id="@+id/progressBar"
-                android:layout_width="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tv_title_match"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:trackColor="@color/white"
-                app:trackThickness="8dp"
-                app:trackCornerRadius="@dimen/circle_radius"
-                app:indicatorColor="@color/primary_red"
-                android:progress="30"
-                 />
+                android:text="#Match 1 | TDM  | Solo"
+                android:textStyle="bold"
+                style="@style/h3"
+                android:textColor="@color/primary_red" />
 
+
+        </LinearLayout>
+
+        <!-- Row 1 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/inner_padding"
+            android:gravity="center_vertical">
+
+            <!-- Match Date -->
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <!-- Participated Text View -->
-                <TextView
-                    android:id="@+id/tvParticipated"
-                    style="@style/data_match_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Participated: " />
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
 
-                <!-- Remaining Text View -->
+                <!-- Date Label -->
                 <TextView
-                    android:id="@+id/tvRemaining"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Remaining: "
-                    style="@style/data_match_text"
-                    />
+                    android:text="Date"
+                    style="@style/label_text" />
+
+                <!-- Date Value -->
+                <TextView
+                    android:id="@+id/tvDateValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date Value"
+                    style="@style/data_match_text" />
+
+            </LinearLayout>
+
+            <!-- Vertical Line -->
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/darker_gray" />
+
+            <!-- Match Time -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <!-- Time Label -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Time"
+                    style="@style/label_text" />
+
+                <!-- Time Value -->
+                <TextView
+                    android:id="@+id/tvTimeValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Time Value"
+                    style="@style/data_match_text" />
+
+            </LinearLayout>
+
+            <!-- Vertical Line -->
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/darker_gray" />
+
+            <!-- Map -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <!-- Map Label -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Map"
+                    style="@style/label_text" />
+
+                <!-- Map Value -->
+                <TextView
+                    android:id="@+id/tvMapValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Map Value"
+                    style="@style/data_match_text" />
+
+            </LinearLayout>
+
+            <!-- Vertical Line -->
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/darker_gray" />
+
+            <!-- Match Type -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <!-- Match Type Label -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Match Type"
+                    style="@style/label_text" />
+
+                <!-- Match Type Value -->
+                <TextView
+                    android:id="@+id/tvMatchTypeValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Match Type Value"
+                    style="@style/data_match_text" />
+
             </LinearLayout>
 
         </LinearLayout>
 
-
-
-        <!-- Join Button -->
-        <Button
-            android:id="@+id/btnJoin"
+        <!-- Row 2 -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.7"
-            style="@style/primaryButton"
-            android:text="Join" />
+            android:layout_marginVertical="@dimen/inner_padding"
+            android:gravity="center_vertical">
+
+            <!-- Prize Pool -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <!-- Prize Pool Label -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Prize Pool"
+                    style="@style/label_text" />
+
+                <!-- Prize Pool Value -->
+                <TextView
+                    android:id="@+id/tvPrizePoolValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Prize Pool Value"
+                    style="@style/data_match_text" />
+
+            </LinearLayout>
+
+            <!-- Vertical Line -->
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/darker_gray" />
+
+            <!-- Per Kill -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <!-- Per Kill Label -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Per Kill"
+                    style="@style/label_text" />
+
+                <!-- Per Kill Value -->
+                <TextView
+                    android:id="@+id/tvPerKillValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Per Kill Value"
+                    style="@style/data_match_text" />
+
+            </LinearLayout>
+
+            <!-- Vertical Line -->
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/darker_gray" />
+
+            <!-- Entry Fees -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <!-- Entry Fees Label -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Join Using"
+                    style="@style/label_text" />
+
+                <!-- Entry Fees Value -->
+                <TextView
+                    android:id="@+id/tvEntryFeesValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Entry Fees Value"
+                    style="@style/data_match_text" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Additional Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="@dimen/outer_padding"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingEnd="@dimen/inner_padding"
+                android:layout_weight="0.3">
+                <!-- Progress Bar -->
+                <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:id="@+id/progressBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:trackColor="@color/light_backgrond"
+                    app:trackThickness="8dp"
+                    app:trackCornerRadius="@dimen/circle_radius"
+                    app:indicatorColor="@color/primary_red"
+                    android:progress="30"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/inner_padding"
+                    android:orientation="horizontal">
+                    <!-- Participated Text View -->
+                    <TextView
+                        android:id="@+id/tvParticipated"
+                        style="@style/data_match_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Participated: " />
+
+                    <!-- Remaining Text View -->
+                    <TextView
+                        android:id="@+id/tvRemaining"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Remaining: "
+                        style="@style/data_match_text"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
 
 
+
+            <!-- Join Button -->
+<!--            <TextView-->
+<!--                android:id="@+id/btnJoin"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:paddingVertical="6dp"-->
+<!--                android:textAlignment="center"-->
+<!--                android:textSize="@dimen/h3_size"-->
+<!--                android:layout_weight="0.7"-->
+<!--                style="@style/primaryButton"-->
+<!--                android:text="Join" />-->
+
+
+        </LinearLayout>
+
+        <!-- Admin Row -->
+        <LinearLayout
+            android:id="@+id/linear_layout_admin_only_match_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:orientation="horizontal">
+            <ImageButton
+                android:id="@+id/ib_edit_match_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/green"
+                app:tint="@color/white"
+                android:src="@drawable/baseline_edit_24" />
+            <ImageButton
+                android:id="@+id/ib_delete_match_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/primary_red"
+                app:tint="@color/white"
+                android:src="@drawable/baseline_delete_24" />
+            <ImageButton
+                android:id="@+id/ib_participants_match_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/purple_500"
+                app:tint="@color/white"
+                android:src="@drawable/baseline_people_alt_24" />
+            <ImageButton
+                android:id="@+id/ib_rewards_match_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/orange"
+                app:tint="@color/white"
+                android:src="@drawable/baseline_stars_24" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ongoing_only_layout_item_match"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/view_room_id_match_item"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/green"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:fontFamily="@font/nunito_sans_semibold"
+                android:text="Get Room ID" />
+            <Button
+                android:id="@+id/view_participants_match_item"
+                android:layout_weight="1"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/purple"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:fontFamily="@font/nunito_sans_semibold"
+                android:text="Participants" />
+        </LinearLayout>
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/btnJoin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="6dp"
+        android:textAlignment="center"
+        android:textSize="@dimen/h3_size"
+        android:layout_weight="0.7"
+        android:background="@drawable/half_circle_background"
+        style="@style/primaryButton"
+        android:text="Join" />
 </LinearLayout>

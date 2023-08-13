@@ -1,14 +1,24 @@
 package com.gamerrule.android.ui.users;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,18 +45,19 @@ import dev.shreyaspatil.easyupipayment.model.PaymentApp;
 import dev.shreyaspatil.easyupipayment.model.TransactionDetails;
 import dev.shreyaspatil.easyupipayment.model.TransactionStatus;
 
-public class AddBalanceActivity extends AppCompatActivity {
+public class AddBalanceActivity extends AppCompatActivity  {
 
     private TextView currentBalanceTextView;
     private EditText addMoneyEditText;
+    private EditText utrNumberEditText;
     private Button addMoneyButton;
     private TextView setAmount100TextView;
     private TextView setAmount500TextView;
     private TextView setAmount1000TextView;
-
+    private ImageButton ibBack;
     private String transactionId;
     private EasyUpiPayment easyUpiPayment;
-
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +71,10 @@ public class AddBalanceActivity extends AppCompatActivity {
         setAmount100TextView = findViewById(R.id.set_amount_100);
         setAmount500TextView = findViewById(R.id.set_amount_500);
         setAmount1000TextView = findViewById(R.id.set_amount_1000);
+        ibBack = findViewById(R.id.ib_back_add_balance);
+        utrNumberEditText = findViewById(R.id.utr_number_edit_text);
+
+        ibBack.setOnClickListener( v -> { onBackPressed();});
 
         // Set click listeners
         addMoneyButton.setOnClickListener(new View.OnClickListener() {
@@ -69,8 +84,37 @@ public class AddBalanceActivity extends AppCompatActivity {
 
                 // Check if the amount is valid
                 if (isValidAmount(amount)) {
-                    transactionId = "T" + System.currentTimeMillis();
-                    makePayment(amount +".00","gamerbold@upi","GamerBold","gamerbold deposit", transactionId);
+                    transactionId = utrNumberEditText.getText().toString().trim();
+//                    makePayment(amount +".00","gamerbold@upi","GamerBold","gamerbold deposit", transactionId);
+                    if(TextUtils.isEmpty(transactionId)){
+                        Toast.makeText(AddBalanceActivity.this, "Enter a Valid UTR Number to proceed.", Toast.LENGTH_SHORT).show();
+                    }else{
+                        AlertDialog.Builder builder = new AlertDialog.Builder(AddBalanceActivity.this);
+                        builder.setTitle("Confirmation")
+                                .setMessage("Before proceeding, please confirm that you have send an amount to this QR or Upi id.")
+                                .setPositiveButton("Proceed", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        // Positive button click action
+                                        // Add your code here for what should happen when the user clicks 'Proceed'
+                                        dialogInterface.dismiss(); // Close the dialog
+                                        generateTransaction();
+                                    }
+                                })
+                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        // Negative button click action
+                                        // Add your code here for what should happen when the user clicks 'Cancel'
+                                        dialogInterface.dismiss(); // Close the dialog
+                                        showPaymentInfoDialog();
+                                    }
+                                });
+
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                    }
+
                 } else {
                     // Display an error message or perform appropriate action
                     Toast.makeText(AddBalanceActivity.this, "Invalid amount", Toast.LENGTH_SHORT).show();
@@ -126,6 +170,84 @@ public class AddBalanceActivity extends AppCompatActivity {
         fetchWalletBalance(FirebaseAuth.getInstance().getUid());
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        showPaymentInfoDialog();
+    }
+
+    private void showPaymentInfoDialog() {
+        // Create the dialog with a transparent background
+        final Dialog dialog = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_payment_detail, null);
+        dialog.setContentView(view);
+
+        // Get references to the views in the dialog layout
+        TextView descriptionTextView = view.findViewById(R.id.descriptionTextView);
+        ImageView qrCodeImageView = view.findViewById(R.id.qrCodeImageView);
+        Button payButton = view.findViewById(R.id.payButton);
+        Button addUTRButton = view.findViewById(R.id.addUTRButton);
+
+        // Set the title and description
+        descriptionTextView.setText("Please make a payment using the below UPI QR code below." +
+                " After payment please proceed to request payment by clicking on \"Add UTR Number\" button.");
+
+        // TODO: Set the actual QR code image resource here
+        // qrCodeImageView.setImageResource(R.drawable.your_qr_code);
+
+        // Set up click listeners for the buttons
+        payButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Replace "your_payment_url" with the actual payment URL you want to open
+                String paymentUrl = "http://www.paytm.com";
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(paymentUrl));
+                startActivity(intent);
+            }
+        });
+
+        payButton.setVisibility(View.INVISIBLE);
+
+        addUTRButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss(); // Close the dialog after clicking the button
+            }
+        });
+
+        // Show the dialog
+        dialog.show();
+
+        // Make the dialog undestroyable when clicking outside the dialog
+        dialog.setCanceledOnTouchOutside(false);
+
+    }
+
+    // Helper method to show the loading dialog
+    private void showProgressDialog() {
+        if (progressDialog == null) {
+            progressDialog = new ProgressDialog(this);
+            progressDialog.setMessage("Loading..."); // Replace with your custom layout for the progress dialog
+            progressDialog.setCancelable(false); // Prevent dialog from being dismissed when pressing outside
+            progressDialog.show();
+        }
+    }
+
+    // Helper method to hide the loading dialog
+    private void hideProgressDialog() {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+            progressDialog = null;
+        }
+    }
+
+    // Override onDestroy to ensure that the progress dialog is dismissed when the activity is destroyed
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        hideProgressDialog();
+    }
+
 
     private void makePayment(String amount, String upi, String name, String desc, String transactionId) {
         try {
@@ -133,7 +255,7 @@ public class AddBalanceActivity extends AppCompatActivity {
             EasyUpiPayment.Builder builder = new EasyUpiPayment.Builder(this)
                     .setPayeeVpa(upi)
                     .setPayeeName(name)
-                    .setPayeeMerchantCode("7994")
+                    .setPayeeMerchantCode("5816")
                     .setTransactionId(transactionId)
                     .setTransactionRefId(transactionId)
                     .setDescription(desc)
@@ -178,15 +300,14 @@ public class AddBalanceActivity extends AppCompatActivity {
 
 
     private void generateTransaction() {
-
+        showProgressDialog();
         // Create transaction object
         boolean addMoney = true;
         Date transactionTime = new Date();
         int transactionAmount = Integer.parseInt(addMoneyEditText.getText().toString());
         String transactionUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        Transaction transaction = new Transaction(transactionId, addMoney, transactionTime, transactionAmount, transactionUser);
-
+        Transaction transaction = new Transaction(transactionId, addMoney, transactionTime, transactionAmount, transactionUser, true, false, false);
         // Save transaction object to Firestore
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("transactions").document(transactionId).set(transaction)
@@ -194,13 +315,24 @@ public class AddBalanceActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         // Transaction saved successfully
-                        updateWalletBalance(transactionUser, transactionAmount);
+                        hideProgressDialog();
+                        Toast.makeText(AddBalanceActivity.this, "Money Add Transaction Requested Successfully", Toast.LENGTH_LONG).show();
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                finish();
+                                startActivity(new Intent(AddBalanceActivity.this, HomeActivity.class));
+                            }
+                        },1000);
+//                        updateWalletBalance(transactionUser, transactionAmount);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         // Failed to save transaction
+                        hideProgressDialog();
                         Toast.makeText(AddBalanceActivity.this, "Failed to save transaction", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -271,7 +403,7 @@ public class AddBalanceActivity extends AppCompatActivity {
     // Fetch the wallet balance for a user
     private void fetchWalletBalance(String userId) {
         DocumentReference walletRef = FirebaseFirestore.getInstance().collection("wallets").document(userId);
-
+        showProgressDialog();
         walletRef.get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
@@ -281,9 +413,11 @@ public class AddBalanceActivity extends AppCompatActivity {
                             double balance = documentSnapshot.getDouble("balance");
 
                             currentBalanceTextView.setText(balance + "  ");
+                            hideProgressDialog();
                         } else {
                             // Wallet document not found
                             currentBalanceTextView.setText(" 0.00 ");
+                            hideProgressDialog();
                         }
                     }
                 })

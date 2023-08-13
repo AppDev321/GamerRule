@@ -1,9 +1,13 @@
 package com.gamerrule.android.classes;
-public class Game {
+
+import java.io.Serializable;
+
+public class Game implements Serializable {
     private String documentId;
     private String imageURL;
     private String gameName;
     private String gameDescription;
+    private boolean enabled;
 
     public Game() {
         // Default constructor required for Firestore
@@ -13,6 +17,14 @@ public class Game {
         this.imageURL = imageURL;
         this.gameName = gameName;
         this.gameDescription = gameDescription;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     public String getDocumentId() {

@@ -8,15 +8,17 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="light_backgrond">#F1FAFB</color>
+    <color name="light_backgrond">#FFF6F4</color>
     <color name="grey">#F3F3F3</color>
     <color name="light_blue">#A0E4F1</color>
     <color name="light_purple">#7EA6F4</color>
     <color name="purple">#8B52FE</color>
-    <color name="orange">#FF5722</color>
+    <color name="orange">#FFA41B</color>
 
-    <color name="primary_red">#F56062</color>
+    <color name="primary_red">#525FE1</color>
     <color name="secondary_black">#242A38</color>
+    <color name="light_red">#F86F03</color>
     <color name="dark_grey">#4E596F</color>
+    <color name="green">#4CAF50</color>
 
 </resources>

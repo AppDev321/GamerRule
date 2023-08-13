@@ -13,6 +13,12 @@
         android:theme="@style/Theme.GamerRule"
         tools:targetApi="31">
         <activity
+            android:name=".ui.admin.ParticipantsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.admin.AllUsersActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.users.AddBalanceActivity"
             android:exported="false" />
         <activity
@@ -43,6 +49,7 @@
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
+            android:noHistory="true"
             android:theme="@style/Theme.GamerRule">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

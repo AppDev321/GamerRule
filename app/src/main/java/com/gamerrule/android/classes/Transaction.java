@@ -5,6 +5,10 @@ import java.util.Date;
 public class Transaction {
     private String transactionId;
     private boolean addMoney;
+    private String upiID;
+    private boolean pending;
+    private boolean game;
+    private boolean failed;
     private Date transactionTime;
     private int transactionAmount;
     private String transactionUser;
@@ -13,12 +17,15 @@ public class Transaction {
     public Transaction() {
     }
 
-    public Transaction(String transactionId, boolean addMoney, Date transactionTime, int transactionAmount, String transactionUser) {
+    public Transaction(String transactionId, boolean addMoney, Date transactionTime, int transactionAmount, String transactionUser, boolean pending, boolean failed, boolean game) {
         this.transactionId = transactionId;
         this.addMoney = addMoney;
         this.transactionTime = transactionTime;
         this.transactionAmount = transactionAmount;
         this.transactionUser = transactionUser;
+        this.pending = pending;
+        this.game = game;
+        this.failed = failed;
     }
 
     public String getTransactionId() {
@@ -40,5 +47,38 @@ public class Transaction {
     public String getTransactionUser() {
         return transactionUser;
     }
-}
 
+
+    public boolean isGame() {
+        return this.game;
+    }
+
+    public void setGame(boolean game) {
+        this.game = game;
+    }
+
+
+    public String getUpiID() {
+        return upiID;
+    }
+
+    public void setUpiID(String upiID) {
+        this.upiID = upiID;
+    }
+
+    public boolean isPending() {
+        return pending;
+    }
+
+    public void setPending(boolean pending) {
+        this.pending = pending;
+    }
+
+    public boolean isFailed() {
+        return failed;
+    }
+
+    public void setFailed(boolean failed) {
+        this.failed = failed;
+    }
+}

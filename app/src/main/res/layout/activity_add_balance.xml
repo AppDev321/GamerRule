@@ -81,7 +81,7 @@
         style="@style/editBox"
         android:padding="@dimen/outer_padding"
         android:layout_marginHorizontal="@dimen/outer_padding"
-        android:layout_marginVertical="48dp"
+        android:layout_marginTop="32dp"
         android:inputType="numberSigned"
         android:elevation="1dp"
         android:hint="Enter Amount"
@@ -129,6 +129,18 @@
             android:background="@drawable/background_square_disabled" />
     </LinearLayout>
 
+    <EditText
+        android:id="@+id/utr_number_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/editBox"
+        android:padding="@dimen/outer_padding"
+        android:layout_marginHorizontal="@dimen/outer_padding"
+        android:elevation="1dp"
+        android:hint="UTR Number"
+        android:drawableStart="@drawable/baseline_password_24"
+        android:drawableTint="@color/dark_grey"
+        android:drawablePadding="@dimen/outer_padding" />
     <Button
         android:id="@+id/add_money_button"
         android:layout_width="match_parent"

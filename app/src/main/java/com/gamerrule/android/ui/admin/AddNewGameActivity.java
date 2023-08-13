@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.gamerrule.android.R;
@@ -23,8 +26,10 @@ public class AddNewGameActivity extends AppCompatActivity {
     private EditText etGameName;
     private EditText etGameDescription;
     private Button addNewGameButton;
-
     private Boolean isUpdate=false;
+    private ImageView ibBackButton;
+    private Switch gameEnabledSwitch;
+    private boolean isEnabled;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,14 +39,26 @@ public class AddNewGameActivity extends AppCompatActivity {
         etGameName = findViewById(R.id.etGameName);
         etGameDescription = findViewById(R.id.etGameDescription);
         addNewGameButton = findViewById(R.id.addNewGameButton);
+        ibBackButton = findViewById(R.id.iv_back_nav_add_new);
+        gameEnabledSwitch = findViewById(R.id.gameEnabledSwitch);
+
+
+        ibBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         // Check if extra is passed
         if (getIntent().hasExtra("game")) {
             // Get the game object from the extra
-            Game game = getIntent().getParcelableExtra("game");
+            Game game = (Game) getIntent().getSerializableExtra("game");
             isUpdate= true;
+
+            addNewGameButton.setText("Update Game");
             // Set initial content with the game object's data
-            setInitialContent(game.getImageURL(), game.getGameName(), game.getGameDescription());
+            setInitialContent(game.getImageURL(), game.getGameName(), game.getGameDescription(), game.getEnabled());
         }
 
         addNewGameButton.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +69,7 @@ public class AddNewGameActivity extends AppCompatActivity {
                 String imageURL = etGameImageURL.getText().toString().trim();
                 String gameName = etGameName.getText().toString().trim();
                 String gameDescription = etGameDescription.getText().toString().trim();
+                isEnabled = gameEnabledSwitch.isChecked();
 
                 // Validate the input data
                 if (imageURL.isEmpty() || gameName.isEmpty() || gameDescription.isEmpty()) {
@@ -66,7 +84,8 @@ public class AddNewGameActivity extends AppCompatActivity {
                     if(isUpdate){
                         // Create a new game object
                         Game game = new Game(imageURL, gameName, gameDescription);
-                        Game gameOld = getIntent().getParcelableExtra("game");
+                        game.setEnabled(gameEnabledSwitch.isChecked());
+                        Game gameOld = (Game) getIntent().getSerializableExtra("game");
                         game.setDocumentId(gameOld.getDocumentId());
                         updateGameToFirestore(game);
                     }else{
@@ -76,6 +95,8 @@ public class AddNewGameActivity extends AppCompatActivity {
             }
         });
 
+
+
     }
 
     private void saveGameToFirestore(String imageURL, String gameName, String gameDescription) {
@@ -84,7 +105,7 @@ public class AddNewGameActivity extends AppCompatActivity {
 
         // Create a new Game object
         Game game = new Game(imageURL, gameName, gameDescription);
-
+        game.setEnabled(gameEnabledSwitch.isChecked());
         // Save the game data in Firestore
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("games")
@@ -122,7 +143,7 @@ public class AddNewGameActivity extends AppCompatActivity {
                         Toast.makeText(AddNewGameActivity.this, "Game added successfully", Toast.LENGTH_SHORT).show();
                         setLoading(false);
                         if(!isUpdate){
-                            setInitialContent("", "", "");
+                            setInitialContent("", "", "", false);
                         }
                     }
                 })
@@ -135,10 +156,11 @@ public class AddNewGameActivity extends AppCompatActivity {
                 });
     }
 
-    private void setInitialContent(String imageURL, String gameName, String gameDescription) {
+    private void setInitialContent(String imageURL, String gameName, String gameDescription, boolean enabled) {
         etGameImageURL.setText(imageURL);
         etGameName.setText(gameName);
         etGameDescription.setText(gameDescription);
+        gameEnabledSwitch.setChecked(enabled);
     }
 
     private void setLoading(boolean isLoading) {

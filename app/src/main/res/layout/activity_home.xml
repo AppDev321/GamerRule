@@ -15,6 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:padding="@dimen/outer_padding"
+        android:gravity="center_vertical"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -23,8 +24,8 @@
             android:gravity="center_vertical">
             <ImageView
                 android:id="@+id/logo_home_screen"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_alignParentStart="true"
                 android:src="@mipmap/ic_launcher_round" />
 
@@ -34,21 +35,33 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dp"
                 android:layout_toRightOf="@id/logo_home_screen"
+                android:fontFamily="@font/lobster_two"
                 android:paddingStart="@dimen/inner_padding"
                 android:text="@string/app_name"
                 android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/wallet_balance_home"
+                style="@style/editBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
                 android:layout_alignParentEnd="true"
-                android:text="0.00"
-                android:textColor="@color/orange"
-                style="@style/editBox"
                 android:drawableStart="@drawable/ic_coin_16"
                 android:drawablePadding="@dimen/inner_padding"
-                android:padding="4dp" />
+                android:padding="4dp"
+                android:text="0.00"
+                android:textColor="@color/orange" />
+
+            <ImageButton
+                android:visibility="gone"
+                android:id="@+id/sign_out_home"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:backgroundTint="@color/white"
+                app:tint="@color/black"
+                android:src="@drawable/baseline_power_settings_new_14"/>
 
         </RelativeLayout>
 
@@ -79,7 +92,7 @@
         android:orientation="vertical"
         android:paddingHorizontal="@dimen/outer_padding"
         android:paddingTop="@dimen/outer_padding"
-        android:paddingBottom="60dp"
+        android:paddingBottom="@dimen/outer_padding"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

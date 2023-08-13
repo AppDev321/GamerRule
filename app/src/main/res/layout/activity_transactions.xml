@@ -63,23 +63,40 @@
             android:textColor="@color/secondary_black"
             android:text="0" />
     </LinearLayout>
-    <Button
-        android:id="@+id/add_balance_transaction"
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        style="@style/primaryButton"
-        android:drawableStart="@drawable/baseline_account_balance_wallet_24"
-        android:drawablePadding="@dimen/outer_padding"
-        android:drawableTint="@color/white"
-        android:text="Add Balance" />
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/add_balance_transaction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/primaryButton"
+            android:drawableStart="@drawable/baseline_account_balance_wallet_24"
+            android:drawablePadding="@dimen/outer_padding"
+            android:layout_marginHorizontal="@dimen/inner_padding"
+            android:drawableTint="@color/white"
+            android:text="Add Balance" />
+        <Button
+            android:id="@+id/Withdraw_balance_transaction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/inner_padding"
+            style="@style/primaryButton"
+            android:backgroundTint="@color/green"
+            android:drawableStart="@drawable/baseline_account_balance_wallet_24"
+            android:drawablePadding="@dimen/outer_padding"
+            android:drawableTint="@color/white"
+            android:text="Withdraw Balance" />
+    </LinearLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_transactions"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/outer_padding" />
-
-
 
 </LinearLayout>

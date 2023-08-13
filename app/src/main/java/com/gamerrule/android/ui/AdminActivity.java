@@ -12,7 +12,10 @@ import android.widget.TextView;
 import com.gamerrule.android.R;
 import com.gamerrule.android.ui.admin.AddMatchActivity;
 import com.gamerrule.android.ui.admin.AddNewGameActivity;
+import com.gamerrule.android.ui.admin.AllUsersActivity;
 import com.gamerrule.android.ui.users.HomeActivity;
+import com.gamerrule.android.ui.users.TransactionsActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class AdminActivity extends AppCompatActivity {
 
@@ -69,6 +72,12 @@ public class AdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Handle click event for View Transactions option
+                Intent intent = new Intent(AdminActivity.this, TransactionsActivity.class);
+
+                intent.putExtra("uid", FirebaseAuth.getInstance().getUid());
+                intent.putExtra("viewAll", FirebaseAuth.getInstance().getUid());
+
+                startActivity(intent);
             }
         });
 
@@ -76,6 +85,12 @@ public class AdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Handle click event for Withdraw Requests option
+                Intent intent = new Intent(AdminActivity.this, TransactionsActivity.class);
+
+                intent.putExtra("uid", FirebaseAuth.getInstance().getUid());
+                intent.putExtra("viewRequest", FirebaseAuth.getInstance().getUid());
+
+                startActivity(intent);
             }
         });
 
@@ -83,6 +98,8 @@ public class AdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Handle click event for Manage Users option
+
+                startActivity(new Intent(AdminActivity.this, AllUsersActivity.class));
             }
         });
     }

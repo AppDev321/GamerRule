@@ -7,10 +7,42 @@
     android:padding="@dimen/inner_padding"
     android:layout_height="240dp">
 
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/linear_layout_admin_only_game_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:translationZ="2dp"
+        android:layout_margin="@dimen/inner_padding"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/ib_edit_game_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_edit_24"
+            android:backgroundTint="@color/green"
+            app:tint="@color/white" />
+
+        <ImageButton
+            android:id="@+id/ib_delete_game_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_delete_24"
+            android:backgroundTint="@color/primary_red"
+            app:tint="@color/white" />
+
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/textView_game_item"
-        style="@style/h2"
+        style="@style/h3"
+        android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/outer_padding"

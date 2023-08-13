@@ -5,13 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.gamerrule.android.MainActivity;
 import com.gamerrule.android.R;
+import com.gamerrule.android.classes.Constants;
 import com.gamerrule.android.classes.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -58,15 +61,20 @@ public class LoginActivity extends AppCompatActivity {
 
         if(mAuth.getCurrentUser() != null){
 //            Toast.makeText(this, "Already logged in as " + mAuth.getCurrentUser().getPhoneNumber(), Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(LoginActivity.this, AdminActivity.class));
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
         }
 
         tvRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
             }
         });
+
+
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,13 +88,17 @@ public class LoginActivity extends AppCompatActivity {
     private void login() {
         setLoading(true);
 
-        String phoneNumber = etPhone.getText().toString();
 
         // Verify if the phone number is valid
-        if (!isValidPhoneNumber(phoneNumber)) {
+        if (!isValidPhoneNumber(etPhone.getText().toString())) {
             Toast.makeText(this, "Invalid phone number", Toast.LENGTH_SHORT).show();
             return;
         }
+
+        etPhone.setText(new Constants().makeValidPhoneNumber(etPhone.getText().toString()));
+
+
+        String phoneNumber = etPhone.getText().toString();
 
         // Check if a user with the given phone number exists in Firestore
         FirebaseFirestore.getInstance().collection("users")
@@ -104,7 +116,7 @@ public class LoginActivity extends AppCompatActivity {
                             if(isOtpSent){
                                 verifyCode(etOtp.getText().toString().trim());
                             }else{
-                                sendVerificationCode(phoneNumber);
+                                sendVerificationCode(new Constants().makeValidPhoneNumber(phoneNumber));
                             }
                         }
                     }
@@ -159,6 +171,16 @@ public class LoginActivity extends AppCompatActivity {
                             if (firebaseUser != null) {
                                 setLoading(false);
                                 Toast.makeText(LoginActivity.this, "Logged in successfully", Toast.LENGTH_LONG).show();
+
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                }, 1000);
 
                             }
                         } else {

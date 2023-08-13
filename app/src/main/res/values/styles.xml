@@ -4,7 +4,7 @@
     <style name="h1">
         <item name="android:textSize">@dimen/h1_size</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:fontFamily">@font/nunito_sans_semibold</item>
+        <item name="android:fontFamily">@font/sheylia</item>
     </style>
     <style name="h2">
         <item name="android:textSize">@dimen/h2_size</item>

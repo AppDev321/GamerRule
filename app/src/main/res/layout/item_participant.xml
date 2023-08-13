@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/outer_padding"
+    android:id="@+id/ll_parent_item_participant"
+    android:background="@drawable/background_square_disabled"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textViewGameUsername_participant_item"
+        style="@style/TextAppearance.AppCompat.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/primary_red" />
+
+
+    <TextView
+        android:id="@+id/textViewKillNumber_participant_item"
+        style="@style/TextAppearance.AppCompat.Body2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/purple" />
+    <TextView
+        android:id="@+id/textViewRank_participant_item"
+        style="@style/TextAppearance.AppCompat.Body2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/purple" />
+
+    <TextView
+        android:id="@+id/textViewAmountWin_participant_item"
+        style="@style/TextAppearance.AppCompat.Body2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/purple" />
+
+    <LinearLayout
+        android:id="@+id/ll_admin_only_participant_item"
+        android:visibility="gone"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginVertical="@dimen/inner_padding"
+            android:background="@color/secondary_black" />
+
+        <TextView
+            android:id="@+id/textViewParticipantName_participant_item"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/textViewWalletBalance_participant_item"
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/textViewParticipantEmail_participant_item"
+            style="@style/TextAppearance.AppCompat.Body2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/textViewParticipantNumber_participant_item"
+            style="@style/TextAppearance.AppCompat.Body2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <Button
+                android:id="@+id/buttonGiveReward_participant_item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Give Reward"
+                android:backgroundTint="@color/orange"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/buttonSeeTransactions_participant_item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="See Transactions"
+                android:backgroundTint="@color/purple"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</LinearLayout>

@@ -15,9 +15,11 @@ import com.bumptech.glide.request.RequestOptions;
 import com.gamerrule.android.R;
 
 public class SlideAdapter extends RecyclerView.Adapter<SlideAdapter.SlideViewHolder> {
-    private String[] images = {"https://img.freepik.com/free-vector/gradient-gaming-concept-landing-page_23-2149917571.jpg",
-            "https://img.freepik.com/free-psd/video-gaming-social-media-promo-template-with-gradient-geometric-forms_23-2149708571.jpg?q=10&h=200",
-            "https://img.freepik.com/free-psd/table-hockey-banner-design-template_23-2149221305.jpg?w=2000"};
+    private int[] images = {
+            R.drawable.slider_image_1,
+            R.drawable.slider_image_2,
+            R.drawable.slider_image_3
+    };
 
     @NonNull
     @Override
@@ -32,10 +34,11 @@ public class SlideAdapter extends RecyclerView.Adapter<SlideAdapter.SlideViewHol
         RequestOptions requestOptions = new RequestOptions()
                 .transform(new RoundedCorners(16)); // Set corner radius here
         holder.imageView.setClipToOutline(true);
-        Glide.with(holder.imageView.getContext())
-                .load(images[position])
-                .transform(new CenterInside(), new RoundedCorners(24))
-                .into(holder.imageView);
+        holder.imageView.setImageDrawable(holder.imageView.getResources().getDrawable(images[position]));
+//        Glide.with(holder.imageView.getContext())
+//                .load()
+//                .transform(new CenterInside(), new RoundedCorners(24))
+//                .into(holder.imageView);
         holder.imageView.setClipToOutline(true);
     }
 

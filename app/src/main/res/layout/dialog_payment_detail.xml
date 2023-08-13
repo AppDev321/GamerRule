@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <!-- Title -->
+    <TextView
+        android:background="@drawable/half_circle_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Payment Info"
+        android:padding="16dp"
+        style="@style/h1"
+        android:layout_margin="-16dp"
+        android:textColor="@color/white"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Description -->
+    <TextView
+        android:paddingHorizontal="@dimen/outer_padding"
+        android:id="@+id/descriptionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please make a payment using the below UPI QR code or click on the button below to make payment."
+        android:textColor="@color/black"
+        style="@style/small_text"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- QR Code -->
+    <ImageView
+        android:id="@+id/qrCodeImageView"
+        android:layout_width="wrap_content"
+        android:background="@color/white"
+        android:elevation="2dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/your_qr_code"
+        android:layout_gravity="center_horizontal"
+        android:maxHeight="360dp"
+        android:adjustViewBounds="true"
+        android:layout_marginHorizontal="@dimen/outer_padding"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Button to Open URL Intent -->
+    <Button
+        android:id="@+id/payButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Click to Pay"
+        android:visibility="invisible"
+        style="@style/primaryButton"
+        android:layout_marginHorizontal="@dimen/outer_padding"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Button to Add UTR Number -->
+    <Button
+        android:layout_marginHorizontal="@dimen/outer_padding"
+        android:id="@+id/addUTRButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add UTR Number"
+        style="@style/primaryButton"
+        android:backgroundTint="@color/green"
+        android:layout_gravity="center_horizontal"/>
+</LinearLayout>

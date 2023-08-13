@@ -1,12 +1,23 @@
 package com.gamerrule.android.classes;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
-public class Match {
+public class Match implements Serializable {
     private String documentId;
+    private List<Participant> participants;
 
     public String getDocumentId() {
         return documentId;
+    }
+
+    public void setParticipants(List<Participant> participants) {
+        this.participants = participants;
+    }
+
+    public List<Participant> getParticipants() {
+        return participants;
     }
 
     public void setDocumentId(String documentId) {

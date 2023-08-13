@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/editTextBalanceWithdraw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberSigned"
+        style="@style/editBox"
+        android:layout_marginVertical="@dimen/outer_padding"
+        android:hint="Enter balance to withdraw" />
+
+    <EditText
+        android:id="@+id/editTextUpiWithdraw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        style="@style/editBox"
+        android:layout_marginVertical="@dimen/outer_padding"
+        android:hint="Enter Upi ID to withdraw" />
+
+    <Button
+        android:id="@+id/buttonConfirmWithdraw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/primaryButton"
+        android:text="Confirm" />
+
+</LinearLayout>

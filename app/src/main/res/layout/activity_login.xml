@@ -17,6 +17,7 @@
         <TextView
             android:id="@+id/login_title_tv"
             style="@style/h1"
+            android:visibility="invisible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/login_title"
@@ -97,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:text="Sign Up"
                 android:textAlignment="center"
-                android:textColor="@color/orange"/>
+                android:textColor="@color/primary_red"/>
 
         </LinearLayout>
 

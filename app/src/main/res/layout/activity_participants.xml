@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.admin.ParticipantsActivity">
+
+    <!-- Header -->
+    <LinearLayout
+        android:id="@+id/headerLayout_participants"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/half_circle_background"
+        android:padding="@dimen/outer_padding">
+
+        <ImageView
+            android:id="@+id/iv_back_nav_participants_match"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_arrow_back_ios_24"
+            app:tint="@color/white"
+            android:paddingEnd="@dimen/outer_padding" />
+        <TextView
+            android:id="@+id/match_title_participants"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            style="@style/h2"
+            android:text="Free Fire"
+            />
+
+    </LinearLayout>
+
+    <!-- RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/participantsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerLayout_participants" />
+
+</RelativeLayout>

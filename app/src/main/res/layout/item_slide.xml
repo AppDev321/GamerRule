@@ -4,15 +4,16 @@
     android:orientation="vertical"
     android:layout_height="match_parent">
 
-    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    <ImageView
         android:id="@+id/imageView_item_slide"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:clipToOutline="true"
-        android:background="@drawable/edit_text_background"
         android:layout_marginHorizontal="@dimen/outer_padding"
-        />
+        android:adjustViewBounds="false"
+        android:background="@drawable/edit_text_background"
+
+        android:clipToOutline="true"
+        android:scaleType="centerCrop" />
 
 
 </LinearLayout>

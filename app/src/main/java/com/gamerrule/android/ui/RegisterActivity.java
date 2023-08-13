@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -12,7 +13,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.gamerrule.android.MainActivity;
 import com.gamerrule.android.R;
+import com.gamerrule.android.classes.Constants;
 import com.gamerrule.android.classes.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -35,7 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText etEmail;
     private EditText etPhone;
     private EditText etOtp;
-    private TextView tvResendOtp;
+    private TextView tvResendOtp, goToLogin;
     private Button registerButton;
 
     // variable for FirebaseAuth class
@@ -57,6 +60,17 @@ public class RegisterActivity extends AppCompatActivity {
         etOtp = findViewById(R.id.et_otp_input_register);
         tvResendOtp = findViewById(R.id.tv_resend_otp_register);
         registerButton = findViewById(R.id.register_button);
+        goToLogin = findViewById(R.id.tv_login_from_register);
+
+        goToLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         // below line is for getting instance
         // of our FirebaseAuth.
@@ -112,6 +126,10 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
+        phone = new Constants().makeValidPhoneNumber(phone);
+
+        etPhone.setText(phone);
+
         if(!isOtpSent){
             sendVerificationCode(phone);
         }else{
@@ -120,6 +138,8 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     }
+
+
 
     private void setLoading(boolean b) {
         if(b){
@@ -180,6 +200,16 @@ public class RegisterActivity extends AppCompatActivity {
                                                 Toast.makeText(RegisterActivity.this, "Registration successful!", Toast.LENGTH_SHORT).show();
                                                 // Proceed with further actions or navigate to the next screen
                                                 setLoading(false);
+
+                                                new Handler().postDelayed(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                                                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                        startActivity(intent);
+                                                        finish();
+                                                    }
+                                                }, 1000);
                                             }
                                         })
                                         .addOnFailureListener(new OnFailureListener() {

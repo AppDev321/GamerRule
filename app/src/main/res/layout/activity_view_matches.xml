@@ -4,30 +4,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/outer_padding"
-    android:background="@drawable/drawable_home"
+    android:background="@color/white"
     tools:context=".ui.users.ViewMatchesActivity">
 
-    <TextView
-        android:id="@+id/game_title_match"
+    <LinearLayout
+        android:id="@+id/nav_view_martches"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/arbutus"
-        android:text="Free Fire"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="@dimen/h1_size"
+        android:orientation="horizontal"
+        android:padding="@dimen/outer_padding"
+        android:background="@drawable/half_circle_background"
+        android:gravity="center_vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" >
+        <ImageView
+            android:id="@+id/iv_back_nav_view_match"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_arrow_back_ios_24"
+            app:tint="@color/white"
+            android:paddingEnd="@dimen/outer_padding" />
+        <TextView
+            android:id="@+id/game_title_match"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            style="@style/h1"
+            android:text="Free Fire"
+            />
+        <ImageView
+            android:id="@+id/iv_edit_gameId_view_match"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_edit_24"
+            app:tint="@color/white"
+            android:paddingStart="@dimen/outer_padding" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/game_title_match"
+        app:layout_constraintTop_toBottomOf="@id/nav_view_martches"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@drawable/rounded_background_top_only"
         android:elevation="2dp"
         android:layout_marginTop="20dp"
         android:padding="@dimen/outer_padding">
